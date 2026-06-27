@@ -1,42 +1,57 @@
 #include <stdio.h>
 
 int main() {
-    char operator;
+    int choice;
     double num1, num2, result;
 
-    printf("Enter operator (+, -, *, /): ");
-    scanf(" %c", &operator);
+    while (1) {
+        printf("\n----- Calculator Menu -----\n");
+        printf("1. Addition\n");
+        printf("2. Subtraction\n");
+        printf("3. Multiplication\n");
+        printf("4. Division\n");
+        printf("5. Exit\n");
+        printf("Enter your choice (1-5): ");
+        scanf("%d", &choice);
 
-    printf("Enter two numbers: ");
-    scanf("%lf %lf", &num1, &num2);
-
-    switch (operator) {
-        case '+':
-            result = num1 + num2;
-            printf("%.2lf + %.2lf = %.2lf\n", num1, num2, result);
+        if (choice == 5) {
+            printf("Exiting program. Goodbye!\n");
             break;
+        }
 
-        case '-':
-            result = num1 - num2;
-            printf("%.2lf - %.2lf = %.2lf\n", num1, num2, result);
-            break;
+        if (choice < 1 || choice > 4) {
+            printf("Error: Invalid choice. Please try again.\n");
+            continue;
+        }
 
-        case '*':
-            result = num1 * num2;
-            printf("%.2lf * %.2lf = %.2lf\n", num1, num2, result);
-            break;
+        printf("Enter two numbers: ");
+        scanf("%lf %lf", &num1, &num2);
 
-        case '/':
-            if (num2 != 0) {
-                result = num1 / num2;
-                printf("%.2lf / %.2lf = %.2lf\n", num1, num2, result);
-            } else {
-                printf("Error: Division by zero is not allowed.\n");
-            }
-            break;
+        switch (choice) {
+            case 1:
+                result = num1 + num2;
+                printf("Result: %.2lf + %.2lf = %.2lf\n", num1, num2, result);
+                break;
 
-        default:
-            printf("Error: Invalid operator.\n");
+            case 2:
+                result = num1 - num2;
+                printf("Result: %.2lf - %.2lf = %.2lf\n", num1, num2, result);
+                break;
+
+            case 3:
+                result = num1 * num2;
+                printf("Result: %.2lf * %.2lf = %.2lf\n", num1, num2, result);
+                break;
+
+            case 4:
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    printf("Result: %.2lf / %.2lf = %.2lf\n", num1, num2, result);
+                } else {
+                    printf("Error: Division by zero is not allowed.\n");
+                }
+                break;
+        }
     }
 
     return 0;
